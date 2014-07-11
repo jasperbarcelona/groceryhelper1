@@ -5,7 +5,6 @@ MarkupSafe==0.23
 Pillow==2.3.0
 SQLAlchemy==0.9.6
 Werkzeug==0.9.6
-apt-xapian-index==0.45
 argparse==1.2.1
 chardet==2.0.1
 colorama==0.2.5
