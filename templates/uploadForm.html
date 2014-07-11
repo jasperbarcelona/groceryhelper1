@@ -1,0 +1,69 @@
+<html>
+<head>
+	<style>
+#recipeName{
+	margin-top: 10px;
+	padding-left: 10px;
+	height: 30px;
+	width: 230px;
+	border: 2px solid #780691;
+}
+
+#recipeDesc{
+	margin-top: 20px;
+	padding-left: 10px;
+	padding-top: 10px;
+	height: 170px;
+	width: 600px;
+	border: 2px solid #780691;
+}
+
+.onfocus:focus{
+	outline: none;
+}
+#createRecipe{
+	width: 200px;
+	height: 40px;
+	color:#fff;
+	background-color: #3C1356;
+	border: none;
+	font-weight: bold;
+	margin-top: 15px;
+}
+#formContain{
+	padding-top: 20px;
+}
+
+
+
+
+	</style>
+</head>
+
+
+<div id="formContain">
+	<font color="#780691">STEP 1: Recipe name and description</font><br>
+	<input type="text" id="recipeName" placeholder="Recipe Name" class="onfocus" autofocus><br>
+	<textarea row='50' cols='50' placeholder='Recipe Description' id='recipeDesc' class="onfocus" maxlength="198"></textarea><br>
+
+	<input type="button" id="createRecipe" value="NEXT STEP" class="onfocus" onclick=post6()>
+</div>
+
+<html>
+
+<script type="text/javascript">
+function post6(){
+	
+var recipeName = $('#recipeName').val();
+var recipeDesc = $('#recipeDesc').val();
+if (recipeName!=''){
+$.post('/createRecipe',{recipeName:recipeName,recipeDesc:recipeDesc},
+function(data){
+$('#contentCenter').html(data);
+});
+}
+else{
+	alert("You don't have to descibe it, but you need to call it something!")
+}
+}
+</script>

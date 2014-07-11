@@ -1,0 +1,83 @@
+	<html>
+	<head>
+		<style>
+	#recipe1{
+		width:55.4%;
+		}
+		#rate1{
+			width:30%;
+		}
+		#myRecipes{
+		color: #780691;	
+		}
+
+		#myFav{
+		color: #780691;	
+		}
+	
+		</style>
+	</head>
+	<div id="all">
+	<br>
+	<span id = "myRecipes" onclick="post15()">MyRecipes</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="myFav" onclick="postb()">MyFavorites</span>
+	<div class="tablehead" style="width:92.6%;"></div>
+			
+		<div id="maintabContainer">
+	<table id="mainTab">
+	{% for a in searchIng %}
+			<tr class="tr">
+				<td class="title" id="recipe1">
+					<font size="3"><strong><span class="recipeItem" id={{a.id}} onclick=post(this.id)>{{a.recipe3Name}}</span></strong></font> <br>
+					<font size="2" color="#f13242">By: {{a.recipe3Auth}}</font>
+				</td>
+				<td class="Rate" id="rate1">
+					<font size="2" color="#3c3c3c">Used by {{a.recipe3Use}}</font>
+				</td>
+				<td class="Rate" id="delete1">
+					<img src=static/delete.jpg height="25" width="25" id={{a.id}} onclick=postd(this.id)>
+				</td>
+			</tr>
+	{% endfor %}
+		</table>
+	</div>
+
+	</html>
+
+<script type="text/javascript">
+function post15(){
+var userName = $('#gotoprofile').val();
+$.post('/viewProfile',{userName:userName},
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
+
+
+<script type="text/javascript">
+function postb(){
+$.post('/my_favorites',
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function post15(){
+$.post('/viewProfile',
+function(data){
+$('contentCenter').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function postd(id){
+var id = id;
+$.post('/deleteRecipe',{id:id},
+function(data){
+$('#all').html(data);
+});
+}
+</script>

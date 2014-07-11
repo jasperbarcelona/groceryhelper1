@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+.tr1{
+	height:25px;
+}
+#ingname{
+	text-align: center;
+	width:60%;
+}
+#ingcat{
+	text-align: center;
+	width:100%;
+}
+.tr1:nth-child(odd) {
+    background-color: #EEEEEE;
+}
+
+.tr1:hover{
+	background-color: #5ACBF3;
+}
+#ingtabContainer{
+	margin-top: 2px;
+	height:308px;
+	width: 91.7%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#searchIngr{
+	width: 260px;
+	margin-top: 10px;
+	border-radius: 5px;
+	height:25px;
+	padding: 5px;
+	outline: none;
+	border: 1px solid #999999;	
+}
+#ingsearch{
+	width: 820px;
+}
+p{
+	display: inline;
+	margin-left: 220px;
+	color: #780691;
+}
+#ingTab{
+	width: 100%;
+}
+#addedings{
+	padding-top: 40px;
+}
+#step2{
+	margin-top: 20px;
+}
+
+</style>
+</head>
+
+<div id="step2">
+<font color="#780691">STEP 2: Click the ingredients you want to add to your recipe</font><br>
+</div>
+<div id="ingsearch">
+<input type="text" id="searchIngr" placeholder="Search Ingredient" onchange=post12()>
+
+</div>
+<div class="tablehead" style="width:53.8%;">Ingredient</div><div class="tablehead" style="width:37.7%;">Category</div>
+		
+<div id="ingtabContainer">
+	
+<table id="ingTab">
+		
+
+		
+
+{% for a in allIng %}
+		<tr class="tr1">
+			<td class="title1" id="ingname">
+				<font size="3"><strong><span class="ingItem" id={{a.id}} onclick=post8(this.id)>{{a.ingrName}}</span></strong></font> <br>
+				<font size="2"></font>
+			</td>
+			<td class="title1" id="ingcat">
+			{{a.ingrCat}}
+			</td>			
+		</tr>
+{% endfor %}
+	</table>
+</div>
+
+<div id="addedings">
+
+</div>
+	
+</html>
+
+<script type="text/javascript">
+function post8(id){
+var id = id;
+$.post('/getQty',{id:id},
+function(data){
+$('#popUp').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function post12(){
+var searchstring = $("#searchIngr").val();
+$.post('/searchIng',{searchstring:searchstring},
+function(data){
+$('#ingtabContainer').html(data);
+});
+}
+</script>
+
+<script>
+$(document).ready(function(){
+$(".ingItem").click(function(){
+    
+    $("#overFlow").slideDown();
+   $("#popUp").slideDown('slow');
+})
+
+});
+
+</script>

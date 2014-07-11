@@ -1,0 +1,189 @@
+<html>
+<head>
+<style>
+#addIng{
+	width: 200px;
+	height: 40px;
+	color:#fff;
+	background-color: #3C1356;
+	border: none;
+	font-weight: bold;
+	margin-left: 20px;
+}
+#addIng:focus{
+	outline: none;
+}
+#fav:focus{
+	outline: none;
+}
+#fav2:focus{
+	outline: none;
+}
+#fav{
+	width: 200px;
+	height: 40px;
+	color:#fff;
+	background-color: #3C1356;
+	border: none;
+	font-weight: bold;
+}
+#fav2{
+	width: 200px;
+	height: 40px;
+	color:#fff;
+	background-color: #3C1356;
+	border: none;
+	font-weight: bold;
+}
+#name{
+	font-size: 20px;
+	float: left;
+	margin-top: 30px;
+	
+}
+#unit{
+	font-size: 20px;
+	float: left;
+	margin-left: 5px;
+	margin-top: 30px;
+	
+}
+#qty{
+	font-size: 20px;
+	float: left;
+	margin-left: 30px;
+	margin-top: 30px;
+	
+}
+#desc{
+	width:700px;
+	
+}
+#addButton{
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+}
+#addFav{
+	float: left;
+}
+
+#instructions{
+	width:70%;
+	float: left;
+	margin-top: 20px;
+	text-align: justify;
+}
+
+
+</style>
+</head>
+<div id="contentCenter">
+<div id="desc">
+{% for r in results %}
+<h2>{{ r.recipe3Name }}</h2>
+{{ r.recipe3Desc }}
+{% endfor %}
+</div>
+
+
+<div id = "name">
+{% for i in ing %}
+-{{ i.ingrName }}<br>
+{% endfor %}
+</div>
+
+<div id = "qty">
+{% for q in qty %}
+{{ q.riQty }}<br>
+{% endfor %}
+</div>
+
+<div id = "unit">
+{% for u in ing %}
+{{ u.ingrUnit }}<br>
+{% endfor %}
+</div>
+
+
+
+<div id="addButton">
+	<div id="addFav">
+{% for r in results %}
+{% if username %}
+	{% if fav == False %}
+		<input type = "button" id="fav" value="Add to MyFavorites" onclick=post16()>
+		{% else %}
+		<input type = "button" id="fav" value="Remove from MyFavorites" onclick=post17()>
+	{% endif %}
+{% else %}
+	<input type = "button" id="fav2" value="Add to MyFavorites">
+	{% endif %}
+
+{% endfor %}
+</div>
+{% for r in results %}
+<input type = "button" id="addIng" value="Add to Grocery List" onclick=post1()>
+{% endfor %}
+</div>
+
+{% if instr == "No instructions available." %}
+	<div id="instructions" style="font-style: italic;">
+{% else %}
+	<div id="instructions">
+{% endif %}
+{{instr}}
+
+</div>
+</div>
+</html>
+
+<script type="text/javascript">
+function post1(){
+$.post('/addRecipe',
+function(data){
+$('#addButton').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function post16(){
+$.post('/addFav',
+function(data){
+$('#addFav').html(data);
+});
+}
+</script>
+
+<script>
+$(document).ready(function(){
+$("#fav2").click(function(){
+    $("#overFlow").slideDown();
+    $("#popUp").slideDown('slow');
+
+   
+})
+
+});
+
+</script>
+
+<script type="text/javascript">
+function post17(){
+$.post('/deleteFav',
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function post15(){
+var userName = $('#gotoprofile').val();
+$.post('/viewProfile',{userName:userName},
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>

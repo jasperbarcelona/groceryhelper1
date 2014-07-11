@@ -1,0 +1,81 @@
+<html>
+<head>
+<style>
+#qty1{
+padding-right: 10px;
+height: 25px;
+width: 60px;
+border: 2px solid #780691;
+text-align: right;
+}
+
+#qty1:focus {
+outline: none;
+}
+#qtyContainer{
+	text-align: left;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-right: 20px;
+	height:62%;
+	
+}
+.qtybutton{
+	margin-top: 10px;
+width: 100%;
+height: 30px;
+color:#fff;
+background-color: #3C1356;
+border: none;
+font-weight: bold;
+}
+.qtybutton:focus {
+outline: none;
+}
+#qtybuttoncontainer{
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+height:34%;
+}
+
+
+</style>
+</head>
+
+<div id="qtyContainer">
+
+<strong><font color="#780691">Ingredient:</strong></font> {{name}}<br><br>
+<strong><font color="#780691">Category:</strong></font> {{cat}}<br><br>
+
+<input type="text" id="qty1" maxlength="4"> {{unit}}<br>
+
+</div>
+<div id="qtybuttoncontainer">
+<center>
+<input type="button" class="qtybutton" id={{id}} onclick=post9(this.id) value="Add">
+</center>
+</div>
+</html>
+
+<script>
+function post9(id){
+var id = id;
+var quantity=$('#qty1').val();
+if ((quantity!='')&& (!isNaN(quantity))){
+$.post('/addtorecipe',{id:id,quantity:quantity},
+function(data){
+$('#addedings').html(data);
+});
+$("#qtyMissing").slideUp();
+$("#notNumber").slideUp();
+$("#popUp").slideUp();
+$("#overFlow").slideUp();
+}
+else if (quantity==''){
+	$("#qtyMissing").slideDown();
+}
+else if (isNaN(quantity)==true) 
+	$("#notNumber").slideDown();
+}
+</script>

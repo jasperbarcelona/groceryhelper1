@@ -1,0 +1,52 @@
+<html>
+<head>
+	<style>
+#instr{
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	height: 170px;
+	width: 600px;
+	border: 2px solid #780691;
+}
+
+#step3{
+	margin-top: 20px;
+}
+
+.onfocus:focus{
+	outline: none;
+}
+#donediv{
+	margin-top: 20px;
+	width:100%;
+	float: left;
+}
+#done{
+	width: 200px;
+	height: 40px;
+	color:#fff;
+	background-color: #3C1356;
+	border: none;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+	</style>
+</head>
+<div id="step3"><font color="#780691">STEP 3: Tell them what to do, boss.</font><br></div>
+<textarea row='50' cols='50' placeholder='Instructions' id='instr' class="onfocus" maxlength="1498"></textarea>
+<div id="donediv">
+<input type="button" id="done" value="DONE" class="onfocus" onclick=post11()>
+</div>
+</html>
+
+<script type="text/javascript">
+function post11(){
+var instr = $("#instr").val();
+$.post('/addInstr',{instr:instr},
+function(data){
+$('body').html(data);
+});
+}
+</script>

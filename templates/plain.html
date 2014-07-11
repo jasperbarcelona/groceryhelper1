@@ -1,0 +1,41 @@
+<html>
+<head>
+	<style>
+	#ntbkIng{
+		float: left;
+	}
+	#ntbkQty{
+		float: left;
+		margin-left: 5px;
+		text-align: right;
+	}
+	#ntbkUnit{
+		float: left;
+		margin-left: 5px;
+	}
+	#ntbkdel{
+		margin-left:10px;
+	}
+	
+	</style>
+</head>
+<div id="all">
+<div id="ntbkIng">
+{% for r in ings %}
+{{ r }}<br>
+{% endfor %}
+</div>
+<div id="ntbkQty">
+{% for x in qty %}
+{{x}}<br>
+{% endfor %}
+</div>
+
+<div id="ntbkUnit">
+{% for y in unit %}
+{{y}}<br>
+{% endfor %}
+</div>
+
+</div>
+<html>

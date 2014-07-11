@@ -1,0 +1,32 @@
+<html>
+<head>
+	<style>
+	#mainTab{
+	width:100%;
+	}
+	#recipe{
+	width:71.9%;
+	}
+	#rate{
+		width:100%;
+	}
+	</style>
+</head>
+
+<table id="mainTab">
+			
+
+{% for r in searchIng %}
+		<tr class="tr">
+			<td class="title" id="recipe">
+				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font> <br>
+				<font size="2">By: {{r.recipe3Auth}}</font>
+			</td>
+			<td class="Rate" id="rate">
+				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}}</font>
+			</td>
+		</tr>
+{% endfor %}
+	</table>
+
+</html>

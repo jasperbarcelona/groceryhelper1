@@ -1,0 +1,47 @@
+<html>
+<head>
+<style>
+#serving{
+  width: 150px;
+  height: 35px;
+  border: 2px solid #780691;
+  text-align: right;
+  font-size: 20px;
+  padding-right: 10px;
+  color: #780691;
+  float: left;
+}
+#go{
+  width: 50px;
+  height: 35px;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3C1356;
+  float: left;
+}
+#serving:focus{
+  outline: none;
+}
+
+#go:focus{
+  outline: none;
+}
+</style>
+</head>
+<input type="text" id="serving" maxlength="4" placeholder="Serving" autofocus><input type="button" id="go" value=">>" onclick=post2()>
+
+
+</html>
+
+<script type="text/javascript">
+function post2(){
+var serving = $("#serving").val()
+if ((serving!='')&& (!isNaN(serving))){
+$.post('/addList',{serving:serving},
+function(data){
+$('#notebook').html(data);
+});
+}
+}
+</script>
