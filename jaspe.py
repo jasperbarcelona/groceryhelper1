@@ -11,12 +11,10 @@ from flask.ext.admin import Admin, BaseView, expose
 import os
 
 app = flask.Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 app.secret_key = '234234rfascasascqweqscasefqwefe2323234dvsv'
 ingredients=[]
-
-
 
 
 class recipe3(db.Model):
@@ -571,6 +569,13 @@ def admin_page():
         return flask.render_template('adminPage.html', adminUname=session['adminUname'])
     else:
         return flask.render_template('adminLog.html')
+
+
+@app.route('/db/rebuild')
+def db_rebuild():
+    db.drop_all()
+    db.create_all()
+    return os.environ['DATABASE_URL']
 
 if __name__ == '__main__':
     app.debug = True
