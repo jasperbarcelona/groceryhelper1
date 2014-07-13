@@ -3,13 +3,21 @@ from flask import render_template
 from flask import session, redirect
 from jinja2 import environment, FileSystemLoader
 from flask.ext.sqlalchemy import SQLAlchemy
-import time;
+import time
+from flask.ext import admin
+from flask.ext.admin.contrib import sqla
+from flask.ext.admin.contrib.sqla import ModelView
+from flask.ext.admin import Admin, BaseView, expose
+import os
 
 app = flask.Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
 db = SQLAlchemy(app)
 app.secret_key = '234234rfascasascqweqscasefqwefe2323234dvsv'
 ingredients=[]
+
+
+
 
 class recipe3(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,6 +89,32 @@ class favorites(db.Model):
     def __init__(self, recipeId, userName):
         self.recipeId = recipeId
         self.userName = userName
+
+class admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    adminUname = db.Column(db.String(64))
+    adminPass = db.Column(db.String(64))
+    adminLog = db.Column(db.String(64))
+   
+    def __init__(self, adminUname, adminPass, adminLog):
+        self.adminUname = adminUname
+        self.adminPass = adminPass
+        self.adminLog = adminLog
+
+# Admin ModelView
+class recipe3Admin(sqla.ModelView):
+    column_display_pk = True
+    
+    # form_columns = ['nickname', 'description', 'status']
+    # # form_overrides = dict(status=SelectField)
+    # # form_args = dict(
+    # #          status=dict(
+    # #             choices=[('Approved', 'Approved'), ('Pending', 'Pending')]
+    # #             ))
+
+admin = Admin(app)
+admin.add_view(recipe3Admin(recipe3, db.session))
+admin.add_view(recipe3Admin(user, db.session))
 
  
 def index ():
@@ -521,6 +555,22 @@ def delete_list():
 def view_plain():
 
     return flask.render_template('plain.html', ings=session['add'], qty=session['ntbkqty'], unit=session['ntbkunit'], id=session["iddel"])
+
+
+@app.route('/admin', methods=['GET', 'POST'])
+def prompt_to_log():
+
+    return flask.render_template('adminLog.html')
+
+
+@app.route('/adminAuth', methods=['GET', 'POST'])
+def admin_page():
+    session['adminUname'] = flask.request.form.get('adminUname')
+    session['adminPass'] = flask.request.form.get('adminPass')
+    if admin.query.filter_by(adminUname=session['adminUname'], adminPass=session['adminPass']).first():
+        return flask.render_template('adminPage.html', adminUname=session['adminUname'])
+    else:
+        return flask.render_template('adminLog.html')
 
 if __name__ == '__main__':
     app.debug = True
