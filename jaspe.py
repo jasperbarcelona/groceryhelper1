@@ -575,6 +575,11 @@ def admin_page():
 def db_rebuild():
     db.drop_all()
     db.create_all()
+
+
+    a = recipe3('test', 'test', 'test','test')
+    db.session.add(a)
+    db.session.commit()
     return os.environ['DATABASE_URL']
 
 if __name__ == '__main__':
