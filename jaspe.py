@@ -579,4 +579,4 @@ def db_rebuild():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(port=os.environ['PORT'], host='0.0.0.0')
