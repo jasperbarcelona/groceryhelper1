@@ -410,7 +410,7 @@ def facebook_authorized(resp):
     session['facebook_token'] = (resp['access_token'], '')
     data = facebook.get('/me').data
     if 'id' in data and 'name' in data:
-        session['uname'] = data['name']
+        session['uname'] = data['username']
 
     return redirect(next_url)
 
