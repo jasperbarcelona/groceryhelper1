@@ -28,7 +28,8 @@
 		}
 
 
-.searchBox{
+#searchBox{
+	width: 300px;
 	margin-top: 25px;
 	margin-left: 2%;
 	border-radius: 5px;
@@ -103,7 +104,7 @@
 #headerLeft{
 	float: left;
 	padding-left: 40px;
-	border:2px solid white;
+
 }
 
 .headerRight{
@@ -111,7 +112,6 @@
 	float: right;
 	text-align: right;
 	padding-right: 50px;
-	border:2px solid white;
 }
 #container{
 	height:1000px;
@@ -305,10 +305,10 @@ a{
 
 <div id="header">
 	<div id="headerLeft" class="col-sm-6 col-xs-3">
-<a href="/">My Grocery Helper</a><input type="text" class="searchBox col-sm-3 col-xs-1.5" placeholder="Search Recipes" onchange=post13()>
+<a href="/">My Grocery Helper</a><input type="text" id="searchBox" placeholder="Search Recipes" onchange=post13()>
 	</div>
 
-	<div id="headerRight" class="headerRight col-sm-6 col-xs-3">
+	<div id="headerRight" class="headerRight col-sm-6 col-xs-0">
 	{% if signedin == True %} 	
 	<span id="makeMine" onclick=post5()>Make My Own Recipe</span>		
 	Welcome, <span id="gotoprofile" onclick=post15()>{{username}}</span> | <a href ="/logout" id="logOut">Sign Out</a>
@@ -323,8 +323,6 @@ a{
 
 
 <div id="container">
-<div class="dark col-sm-6 col-xs-3">Dark</div>
-<div class="white col-sm-6 col-xs-3">White</div>
 <div id="overFlow">
 </div>
 
@@ -536,7 +534,7 @@ $("#makeMine2").click(function(){
 
 <script type="text/javascript">
 function post13(){
-var search = $(".searchBox").val();
+var search = $("#searchBox").val();
 $.post('/searchRecipe',{search:search},
 function(data){
 $('#maintabContainer').html(data);
