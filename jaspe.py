@@ -406,7 +406,7 @@ def facebook_authorized(resp):
     if resp is None or 'access_token' not in resp:
         return redirect(next_url)
     
-    session['logged_in'] = True
+    session['signedin'] = True
     session['facebook_token'] = (resp['access_token'], '')
     data = facebook.get('/me').data
     if 'id' in data and 'name' in data:
