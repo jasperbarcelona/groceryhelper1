@@ -240,12 +240,10 @@ a{
 	margin-left: 30px;
 }
 #makeMine{
-	color: #780691;
-	margin-left: 10px;
+	color: #fff;
 }
 #makeMine2{
-	color: #780691;
-	margin-left: 10px;
+	color: #fff;
 }
 #recipe{
 	width:71.9%;
@@ -297,6 +295,11 @@ a{
 
 	<div id="headerRight">
 	{% if signedin == True %} 
+	{% if username %}
+	<span id="makeMine" onclick=post5()>Make My Own Recipe</span>
+	{% else %}
+	<span id="makeMine2" onclick=post5()>Make My Own Recipe</span>
+	{% endif %}
 	Welcome, <span id="gotoprofile" onclick=post15()>{{username}}</span> | <a href ="/logout" id="logOut">Sign Out</a>
 	{% else %}
 	<span id="signIn">Sign In</span> | <a href ="/register" id="register">Register</a>
@@ -396,10 +399,10 @@ a{
 
 <div id = "uploadButton">
 	{% if username %}
-	<span id="makeMine" onclick=post5()>Make My Own Recipe</span><span id="download">View Plain Text</span>
+	<a href="/plain" id="download">Download Grocery List</a>
 	{% else %}
-	<span id="makeMine2">Make My Own Recipe</span><a href="/plain" id="download">View Plain Text</a>
-	{% endif %} 
+	<span id="download">Download Grocery List</span>
+	
 </div>
 
 </div>
@@ -421,6 +424,18 @@ a{
 <script>
 $(document).ready(function(){
 $("#signIn").click(function(){
+    
+    $("#overFlow").slideDown();
+   $("#popUp").slideDown('slow');
+})
+
+});
+
+</script>
+
+<script>
+$(document).ready(function(){
+$("#download").click(function(){
     
     $("#overFlow").slideDown();
    $("#popUp").slideDown('slow');
