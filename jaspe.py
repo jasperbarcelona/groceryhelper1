@@ -577,7 +577,7 @@ def db_rebuild():
     db.create_all()
 
 
-    a = recipe3('test', 'test', 'test','test')
+    a = recipe3('test','test','test','test','count')
     db.session.add(a)
     db.session.commit()
     return os.environ['DATABASE_URL']
