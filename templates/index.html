@@ -28,7 +28,7 @@
 		}
 
 
-#searchBox{
+.searchBox{
 	width: 15%;
 	margin-top: 25px;
 	margin-left: 2%;
@@ -306,7 +306,7 @@ a{
 
 <div id="header">
 	<div id="headerLeft" class="col-sm-6 col-xs-3">
-<a href="/">My Grocery Helper</a><input type="text" id="searchBox" placeholder="Search Recipes" onchange=post13()>
+<a href="/">My Grocery Helper</a><input type="text" class="searchBox col-sm-3 col-xs-1.5" placeholder="Search Recipes" onchange=post13()>
 	</div>
 
 	<div id="headerRight" class="headerRight col-sm-6 col-xs-3">
@@ -537,7 +537,7 @@ $("#makeMine2").click(function(){
 
 <script type="text/javascript">
 function post13(){
-var search = $("#searchBox").val();
+var search = $(".searchBox").val();
 $.post('/searchRecipe',{search:search},
 function(data){
 $('#maintabContainer').html(data);
