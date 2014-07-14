@@ -275,6 +275,9 @@ a{
 	#spans{
 		margin-top: 20px;
 	}
+	.qwer{
+		color: black;
+	}
 
 
 
@@ -345,9 +348,9 @@ a{
 <input type="button" class="login" value="Sign In" onclick=post4()><input type="button" class="login" id="cancel" value="Cancel"><br>
 <ul class="nav pull-right">
     {% if not session.logged_in %}
-    <li><a href="/facebook_login">Login or Signup</a></li>
+    <li><a class="qwer" href="/facebook_login">Login or Signup</a></li>
     {% else %}
-    <li><a href="/logout">Logout</a></li>
+    <li><a class="qwer" href="/logout">Logout</a></li>
     {% endif %}
 </ul>
 <div id="status"></div>
