@@ -294,14 +294,11 @@ a{
 	</div>
 
 	<div id="headerRight">
-	{% if signedin == True %} 
-	{% if username %}
-	<span id="makeMine" onclick=post5()>Make My Own Recipe</span>
-	{% else %}
-	<span id="makeMine2" onclick=post5()>Make My Own Recipe</span>
-	{% endif %}
+	{% if signedin == True %} 	
+	<span id="makeMine" onclick=post5()>Make My Own Recipe</span>		
 	Welcome, <span id="gotoprofile" onclick=post15()>{{username}}</span> | <a href ="/logout" id="logOut">Sign Out</a>
-	{% else %}
+	{% else %}	
+	<span id="makeMine2" >Make My Own Recipe</span>
 	<span id="signIn">Sign In</span> | <a href ="/register" id="register">Register</a>
 	{% endif %}
 	</div>
