@@ -107,7 +107,7 @@
 
 }
 
-#headerRight{
+.headerRight{
 	margin-top: 25px;
 	float: right;
 	text-align: right;
@@ -300,7 +300,7 @@ a{
 <a href="/">My Grocery Helper</a><input type="text" id="searchBox" placeholder="Search Recipes" onchange=post13()>
 	</div>
 
-	<div id="headerRight" class="col-sm-6 col xs-3">
+	<div id="headerRight" class="headerRight col-sm-6 col xs-3">
 	{% if signedin == True %} 	
 	<span id="makeMine" onclick=post5()>Make My Own Recipe</span>		
 	Welcome, <span id="gotoprofile" onclick=post15()>{{username}}</span> | <a href ="/logout" id="logOut">Sign Out</a>
