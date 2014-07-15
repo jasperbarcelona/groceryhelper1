@@ -278,9 +278,7 @@ a:hover{
 	#tabs{
 		width: 92.4%;
 	}
-	.nav{
-		color: #fff;
-	}
+	
 
 
 
@@ -289,7 +287,7 @@ a:hover{
 </head>
 
 <body>
-<nav class="nav navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -361,7 +359,7 @@ a:hover{
 	
 
 	<div id="maintabContainer">
-
+		<div id = "myDiv" style="display:none"><img id = "myImage" src = "static/loading.gif"></div>
 
 {% for r in display %}
 <div id="content">
@@ -565,12 +563,19 @@ $('#contentCenter').html(data);
 
 <script type="text/javascript">
 function postm(){
+document.getElementById("myDiv").style.display="block";
+setTimeout("hide()", 5000);
 $.post('/mostRecent',
 function(data){
 $('#maintabContainer').html(data);
 });
 }
+
+function hide() {
+    document.getElementById("myDiv").style.display="none";
+}
 </script>
+
 
 
 
