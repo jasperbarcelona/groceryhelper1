@@ -590,7 +590,7 @@ def delete_favorites():
     delete_this_fav()
     
     return flask.render_template('recipeDetails.html', username=session['uname'], \
-        results=show_recipe_after_favdelete(), ing=get_ingridients_after_favdelete(), qty=get_ingridient_quantity_after_favdelete(), instr=session["passinstruct"],fav=check_if_fav_afte_favdelete())
+        results=show_recipe_after_favdelete(), ing=get_ingridients_after_favdelete(), qty=get_ingridient_quantity_after_favdelete(), instr=session["passinstruct"],fav=False)
 
 
 @app.route('/deleteRecipe', methods=['GET', 'POST'])
