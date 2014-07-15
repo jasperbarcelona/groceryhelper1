@@ -12,7 +12,11 @@
 	}
 	#maintabContainer{
 	margin-top: 20px;
+	height:335px;
 	width: 92.4%;
+	overflow: scroll;
+	overflow-x: hidden;
+
 }
 #myRecipes{
 		color: #780691;	
@@ -21,19 +25,15 @@
 		#myFav{
 		color: #780691;	
 		}
-#tabs{
-		width: 92.4%;
-	}
+
 
 
 	</style>
 </head>
 <div id="all">
-	<div id="tabs">	
-	<div class="tablehead" style="width:100%;"></div>
-	<br>
-	</div>
 <br>
+	<span id = "myRecipes" onclick="post15()">MyRecipes</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="myFav" onclick="postb()">MyFavorites</span>
+	<div class="tablehead" style="width:92.6%;"></div>
 			
 		<div id="maintabContainer">
 <table id="mainTab">
