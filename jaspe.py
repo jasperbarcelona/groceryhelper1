@@ -629,18 +629,11 @@ def db_rebuild():
     db.drop_all()
     db.create_all()
 
-
-    a = recipe3('test','test','test','test',123)
-    db.session.add(a)
-    db.session.commit()
-    return os.environ['DATABASE_URL']
-
-
     j = user('Jasper123','qwer','Jasper','Barcelona')
     db.session.add(j)
     db.session.commit()
     return os.environ['DATABASE_URL']
-    
+
 if __name__ == '__main__':
     app.debug = True
     app.run(port=int(os.environ['PORT']), host='0.0.0.0')
