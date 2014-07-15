@@ -145,7 +145,7 @@
 .tablehead{
 	color: #fff;
 	height: 25px;
-	background-color: #3C1356;
+	background-color: #5A5A5A;
 	float:left;
 	margin-right: 2px;
 	margin-top: 10px;
@@ -349,19 +349,18 @@ a:hover{
 
 
 <div id="contentCenter">
-	<div id="spans">
-	<a id = "mostRecent" href="/">MostRecent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="mostUsed" onclick="posta()">MostUsed</span>	
-	</div>
+	
+	
 
+	
+	
+
+	<div id="maintabContainer">
 	<ul class="nav nav-tabs" role="tablist">
   	<li class="active"><a href="/">Most Recent</a></li>
   	<li><a id="mostUsed" onclick="posta()">Most Used</a></li>
 	</ul>
-
 	<div class="tablehead" style="width:92.6%;"></div>
-	
-
-	<div id="maintabContainer">
 	
 {% for r in display %}
 <div id="content">
