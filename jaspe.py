@@ -414,7 +414,7 @@ def facebook_authorized(resp):
         session['uname'] = data['first_name']
         session['lname'] = data['last_name']
 
-    if not user.query.filter_by(facebookId=session['facebookId']):
+    if not user.query.filter_by(facebookId=session['facebookId']).first():
         registerUser=user(session['facebookId'],session['uname'],session['lname'],time.strftime("%x %H:%M:%S"))  
         db.session.add(registerUser)
         db.session.commit()
