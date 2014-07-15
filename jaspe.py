@@ -60,10 +60,10 @@ class recipe3(db.Model):
 
 class user(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userName = db.Column(db.String(64))
-    userPass = db.Column(db.String(140))
+    facebookId = db.Column(db.String(64), unique=True)
     userFname = db.Column(db.String(64))
     userLname = db.Column(db.String(64))
+    joinDate = db.Column(db.String(64))
     
     def __init__(self, userName, userPass, userFname, userLname):
         self.userName = userName
@@ -410,8 +410,12 @@ def facebook_authorized(resp):
     session['facebook_token'] = (resp['access_token'], '')
     data = facebook.get('/me').data
     if 'id' in data and 'name' in data:
-        session['uname'] = data['id']
+        session['facebookId'] = data['id']
+        session['uname'] = data['first_name']
+        session['lname'] = data['last_name']
 
+    if not user.query.filter_by(facebookId=session['facebookId']):
+        registerUser=user(session['facebookId'],session['uname'],session['lname'],time.strftime("%x %H:%M:%S"))    
     return redirect(next_url)
 
 
