@@ -564,16 +564,12 @@ $('#contentCenter').html(data);
 <script type="text/javascript">
 function postm(){
 document.getElementById("myDiv").style.display="block";
-setTimeout("hide()", 5000);
 $.post('/mostRecent',
 function(data){
 $('#maintabContainer').html(data);
 });
 }
 
-function hide() {
-    document.getElementById("myDiv").style.display="none";
-}
 </script>
 
 
