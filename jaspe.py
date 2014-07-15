@@ -60,7 +60,7 @@ class recipe3(db.Model):
 
 class user(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userName = db.Column(db.String(64), unique=True)
+    userName = db.Column(db.String(64))
     userPass = db.Column(db.String(140))
     userFname = db.Column(db.String(64))
     userLname = db.Column(db.String(64))
