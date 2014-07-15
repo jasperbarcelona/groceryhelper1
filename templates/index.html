@@ -157,7 +157,6 @@
 #maintabContainer{
 	margin-top: 20px;
 	width: 92.4%;
-	
 }
 
 .tr{
@@ -350,7 +349,7 @@ a:hover{
 	<div id="tabs">
 
 	<ul class="nav nav-tabs" role="tablist">
-  	<li class="active"><a href="tab1" data-toggle="tab">Most Recent</a></li>
+  	<li class="active"><a href="tab1" data-toggle="tab" onclick="postm()">Most Recent</a></li>
   	<li><a href="tab2" id="mostUsed" onclick="posta()" data-toggle="tab">Most Used</a></li>
 	</ul>
 	<div class="tablehead" style="width:100%;"></div>
@@ -555,6 +554,15 @@ $('#contentCenter').html(data);
 <script type="text/javascript">
 function postb(){
 $.post('/my_favorites',
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function postm(){
+$.post('/mostRecent',
 function(data){
 $('#contentCenter').html(data);
 });
