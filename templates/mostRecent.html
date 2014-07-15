@@ -12,35 +12,41 @@
 	}
 	#maintabContainer{
 	margin-top: 20px;
-	height:335px;
 	width: 92.4%;
-	overflow: scroll;
-	overflow-x: hidden;
+
 }
+
+
+
 	</style>
 </head>
 <div id="all">
-<br>
-	<a id = "mostRecent" href="/">MostRecent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="mostUsed" onclick="posta()">MostUsed</span>	
-	<div class="tablehead" style="width:92.6%;"></div>
-			
-		<div id="maintabContainer">
-<table id="mainTab">
 
 
 {% for r in display %}
+<div id="content">
+<table id="mainTab">
 		<tr class="tr">
 			<td class="title" id="recipe">
-				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font> <br>
+				{% if r.recipe3Use >= 100 %}
+				<img src = "static/star.jpg" height="15" width="15">
+				{% endif %}
+				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font>
+				<br>
+				<font size="2" color="#5A5A5A"><strong>{{r.recipe3Desc[:300]}}</strong></font>
+				<br>
 				<font size="2" color="#f13242">By: {{r.recipe3Auth}}</font>
 			</td>
 			<td class="Rate" id="rate">
-				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}}</font>
+				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}} </font>
 			</td>
 		</tr>
-{% endfor %}
-
+		
 </table>
+</div>
+<br>
+{% endfor %}
+	
 </div>
 </div>
 </html>
@@ -99,17 +105,10 @@ $('#maintabContainer').html(data);
 </script>
 <script type="text/javascript">
 function post15(){
-$.post('/mostRecent',
+var userName = $('#gotoprofile').val();
+$.post('/viewProfile',{userName:userName},
 function(data){
-$('contentCenter').html(data);
-});
-}
-</script>
-<script type="text/javascript">
-function postc(){
-$.post('/mostRecent',
-function(data){
-$('all').html(data);
+$('#contentCenter').html(data);
 });
 }
 </script>
