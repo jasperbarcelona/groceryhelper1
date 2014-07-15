@@ -113,9 +113,9 @@ class favorites(db.Model):
     recipeId = db.Column(db.String(64))
     facebookId = db.Column(db.String(64))
    
-    def __init__(self, recipeId, userName):
+    def __init__(self, recipeId, facebookId):
         self.recipeId = recipeId
-        self.userName = userName
+        self.facebookId = facebookId
 
 class admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
