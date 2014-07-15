@@ -47,15 +47,19 @@ class recipe3(db.Model):
     recipe3Name = db.Column(db.String(64))
     recipe3Desc = db.Column(db.String(140))
     recipe3Auth = db.Column(db.String(64))
+    recipe3facebookId = db.Column(db.String(64))
     recipe3Date = db.Column(db.String(64))
     recipe3Use = db.Column(db.Integer)
+    
 
-    def __init__(self, recipe3Name, recipe3Desc, recipe3Auth, recipe3Date, recipe3Use):
+    def __init__(self, recipe3Name, recipe3Desc, recipe3Auth, recipe3facebookId, recipe3Date, recipe3Use):
         self.recipe3Name = recipe3Name
         self.recipe3Desc = recipe3Desc
         self.recipe3Auth = recipe3Auth
+        self.recipe3facebookId = recipe3facebookId
         self.recipe3Date = recipe3Date
         self.recipe3Use = recipe3Use
+        
 
 
 class user(db.Model):
@@ -107,7 +111,7 @@ class recipeInstr(db.Model):
 class favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipeId = db.Column(db.String(64))
-    userName = db.Column(db.String(64))
+    facebookId = db.Column(db.String(64))
    
     def __init__(self, recipeId, userName):
         self.recipeId = recipeId
@@ -169,7 +173,7 @@ def check_instruction():
     return passinstruct
 
 def check_if_fav():
-    f = favorites.query.filter_by(recipeId=get_id(), userName=session["uname"]).all()
+    f = favorites.query.filter_by(recipeId=get_id(), facebookId=session['facebookId']).all()
     if f:
         session["faved"] = True
     else:
@@ -177,7 +181,7 @@ def check_if_fav():
     return session["faved"]
 
 def check_if_fav_afte_favdelete():
-    f = favorites.query.filter_by(recipeId=session["id"], userName=session["uname"]).all()
+    f = favorites.query.filter_by(recipeId=session["id"], facebookId=session['facebookId']).all()
     if f:
         session["faved"] = True
     else:
@@ -280,18 +284,18 @@ def create_recipe_name_desc():
     recipeName = flask.request.form.get('recipeName')
     recipeDesc = flask.request.form.get('recipeDesc')
 
-    u = recipe3(recipeName,recipeDesc,session['uname'], \
+    u = recipe3(recipeName,recipeDesc,session['uname'],session['facebookId'], \
         time.strftime("%x %H:%M:%S"),0)
     db.session.add(u)
     db.session.commit()
 
-    getID = recipe3.query.filter_by(recipe3Auth=session['uname']).all()
+    getID = recipe3.query.filter_by(recipe3facebookId=session['facebookId']).all()
     session["count2"]= len(getID)
     session["passID"]= getID[session["count2"]-1].id
 
 def get_all_favorites():
     a=[] 
-    f = favorites.query.filter_by(userName=session["uname"]).all()
+    f = favorites.query.filter_by(facebookId=session['facebookId']).all()
     count6 = len(f)
     for x in range(0, count6):
         a.append(recipe3.query.filter_by(id = f[x].recipeId).first())
@@ -355,7 +359,7 @@ def delete_this_ing():
     del session['addtorecipeId'][session["deletfromarray"]]
 
 def delete_this_fav():
-    d = favorites.query.filter_by(recipeId=session["id"], userName=session["uname"]).first()
+    d = favorites.query.filter_by(recipeId=session["id"], facebookId=session['facebookId']).first()
     db.session.delete(d)
     db.session.commit()
 
@@ -380,7 +384,7 @@ def delete_this_recipe():
     for x in range(0, count7):
         db.session.delete(d3[x])
     db.session.commit()
-    b = recipe3.query.filter_by(recipe3Auth=session['uname']).all()
+    b = recipe3.query.filter_by(recipe3facebookId=session['facebookId']).all()
     count4=len(b)
     return b
 
@@ -548,7 +552,7 @@ def delete_ing():
 
 @app.route('/viewProfile', methods=['GET', 'POST'])
 def view_profile():   
-    b = recipe3.query.filter_by(recipe3Auth=session['uname']).all()
+    b = recipe3.query.filter_by(recipe3facebookId=session['facebookId']).all()
     count4=len(b)
     for x in range(0,count4):
         session["returnsearchrecipe"].append(b[x].recipe3Name)
@@ -557,7 +561,7 @@ def view_profile():
 
 @app.route('/addFav', methods=['GET', 'POST'])
 def add_fav():   
-    j = favorites(session["id"],session["uname"])
+    j = favorites(session["id"],session['facebookId'])
     db.session.add(j)
     db.session.commit()
 
