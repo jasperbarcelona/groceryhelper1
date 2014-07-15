@@ -65,11 +65,11 @@ class user(db.Model):
     userLname = db.Column(db.String(64))
     joinDate = db.Column(db.String(64))
     
-    def __init__(self, userName, userPass, userFname, userLname):
-        self.userName = userName
-        self.userPass = userPass
+    def __init__(self, facebookId, userFname, userLname, joinDate):
+        self.facebookId = facebookId
         self.userFname = userFname
         self.userLname = userLname
+        self.joinDate = joinDate
 
 
 class ingr(db.Model):
