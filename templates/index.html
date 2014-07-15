@@ -166,7 +166,7 @@
 	color: #333333;
 }
 
-#content{
+.content{
 	border-radius: 5px;
 	border:1px solid #B4B4B4;
 	border-bottom:4px solid #B4B4B4;
@@ -367,7 +367,7 @@ a:hover{
 		<div id = "myDiv"><img id = "myImage" src = "static/loading.gif"></div>
 
 {% for r in display %}
-<div id="content">
+<div class="content">
 <table id="mainTab">
 		<tr class="tr">
 			<td class="title" id="recipe">
@@ -594,7 +594,7 @@ $("#makeMine2").click(function(){
 <script>
 $(document).ready(function(){
 $("#mostRecent").click(function(){  
-	$("#maintabContainer").hide(); 
+	$(".content").hide(); 
     $("#myDiv").show();
 })
 });
@@ -603,7 +603,7 @@ $("#mostRecent").click(function(){
 <script>
 $(document).ready(function(){
 $("#mostUsed").click(function(){ 
-	$("#maintabContainer").hide();  
+	$(".content").hide();  
     $("#myDiv").show();
 })
 });
