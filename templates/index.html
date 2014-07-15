@@ -29,8 +29,9 @@
 
 
 #searchBox{
-	margin-top: 5px;
 	width: 300px;
+	margin-top: 25px;
+	margin-left: 2%;
 	border-radius: 5px;
 	height:25px;
 	padding: 5px;
@@ -242,10 +243,12 @@ a{
 	margin-left: 30px;
 }
 #makeMine{
+	margin-top: 10px;
 	font-weight: bold;
 	color: #fff;
 }
 #makeMine2{
+	margin-top: 10px;
 	font-weight: bold;
 	color: #fff;
 }
@@ -286,23 +289,7 @@ a{
 	}
 
 	.white{
-	background-color: #fff;
-	}
-	.navbar-custom {
-    background-color:#9B58B5;
-    color:#ffffff;
-    border-radius:0;
-	}
-
-	.navbar-custom .navbar-nav > li > a {
-    color:#fff;
-	}
-	.navbar-custom .navbar-nav li:hover{
-    color: #ffffff;
-    background-color:#8F44AD;
-	}
-	.navbar-custom .navbar-brand {
-    color:#ffffff;
+		background-color: #fff;
 	}
 
 
@@ -312,7 +299,7 @@ a{
 </head>
 
 <body>
-<nav class="navbar navbar-custom" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -330,8 +317,7 @@ a{
 
     	<form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" id="searchBox" class="form-control" placeholder="Search Recipes" onchange=post13()>
-
+          <input type="text" class="form-control" placeholder="Search Recipes" onchange=post13()>
         </div>
       </form>
 
@@ -340,8 +326,8 @@ a{
         {% if signedin == True %} 	
 		<span id="makeMine" onclick=post5()>Make My Own Recipe</span>		
 		{% else %}	
-		<span id="makeMine2" >Make My Own Recipe</span>
-		{% endif %}	
+		<span id="makeMine2">Make My Own Recipe</span>
+		{% endif %}
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<span class="caret"></span></a>
