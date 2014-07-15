@@ -1,83 +1,114 @@
-	<html>
-	<head>
-		<style>
-	#recipe1{
-		width:55.4%;
-		}
-		#rate1{
-			width:30%;
-		}
-		#myRecipes{
-		color: #780691;	
-		}
+<html>
+<head>
+	<style>
+	#mainTab{
+	width:100%;
+	}
+	#recipe{
+	width:71.9%;
+	}
+	#rate{
+		width:100%;
+	}
+	#maintabContainer{
+	margin-top: 20px;
+	width: 92.4%;
 
-		#myFav{
-		color: #780691;	
-		}
+}
+
+
+
+	</style>
+</head>
+<div id="all">
+
+
+{% for r in searchIng %}
+<div id="content">
+<table id="mainTab">
+		<tr class="tr">
+			<td class="title" id="recipe">
+				{% if r.recipe3Use >= 100 %}
+				<img src = "static/star.jpg" height="15" width="15">
+				{% endif %}
+				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font>
+				<br>
+				<font size="2" color="#5A5A5A"><strong>{{r.recipe3Desc[:300]}}</strong></font>
+				<br>
+				<font size="2" color="#f13242">By: {{r.recipe3Auth}}</font>
+			</td>
+			<td class="Rate" id="rate">
+				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}} </font>
+			</td>
+		</tr>
+		
+</table>
+</div>
+<br>
+{% endfor %}
 	
-		</style>
-	</head>
-	<div id="all">
-	<br>
-	<span id = "myRecipes" onclick="post15()">MyRecipes</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="myFav" onclick="postb()">MyFavorites</span>
-	<div class="tablehead" style="width:92.6%;"></div>
-			
-		<div id="maintabContainer">
-	<table id="mainTab">
-	{% for a in searchIng %}
-			<tr class="tr">
-				<td class="title" id="recipe1">
-					<font size="3"><strong><span class="recipeItem" id={{a.id}} onclick=post(this.id)>{{a.recipe3Name}}</span></strong></font> <br>
-					<font size="2" color="#f13242">By: {{a.recipe3Auth}}</font>
-				</td>
-				<td class="Rate" id="rate1">
-					<font size="2" color="#3c3c3c">Used by {{a.recipe3Use}}</font>
-				</td>
-				<td class="Rate" id="delete1">
-					<img src=static/delete.jpg height="25" width="25" id={{a.id}} onclick=postd(this.id)>
-				</td>
-			</tr>
-	{% endfor %}
-		</table>
-	</div>
+</div>
+</div>
+</html>
+<script type="text/javascript">
+function post(id){
+var id = id;
+$.post('/showRecipe',{id:id},
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
 
-	</html>
 
+<script type="text/javascript">
+function post5(){
+$.post('/uploadForm',
+function(data){
+$('#contentCenter').html(data);
+});
+}
+</script>
+
+<script type="text/javascript">
+function post4(){
+var userName = $('#userName').val();
+var userPass = $('#userPass').val();
+$.post('/auth',{userName:userName,userPass:userPass},
+function(data){
+$('body').html(data);
+});
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+$("#makeMine2").click(function(){
+    
+    $("#overFlow").slideDown();
+   $("#popUp").slideDown('slow');
+})
+
+});
+</script>
+
+<script type="text/javascript">
+function post13(){
+var search = $("#searchBox").val();
+$.post('/searchRecipe',{search:search},
+function(data){
+$('#maintabContainer').html(data);
+});
+}
+</script>
 <script type="text/javascript">
 function post15(){
 var userName = $('#gotoprofile').val();
 $.post('/viewProfile',{userName:userName},
 function(data){
 $('#contentCenter').html(data);
-});
-}
-</script>
-
-
-<script type="text/javascript">
-function postb(){
-$.post('/my_favorites',
-function(data){
-$('#contentCenter').html(data);
-});
-}
-</script>
-
-<script type="text/javascript">
-function post15(){
-$.post('/viewProfile',
-function(data){
-$('contentCenter').html(data);
-});
-}
-</script>
-
-<script type="text/javascript">
-function postd(id){
-var id = id;
-$.post('/deleteRecipe',{id:id},
-function(data){
-$('#all').html(data);
 });
 }
 </script>
