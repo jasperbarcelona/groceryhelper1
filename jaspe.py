@@ -414,10 +414,10 @@ def facebook_authorized(resp):
         session['uname'] = data['first_name']
         session['lname'] = data['last_name']
 
-    if not user.query.filter_by(facebookId=session['facebookId']).first():
-        registerUser=user(session['facebookId'],session['uname'],session['lname'],time.strftime("%x %H:%M:%S"))  
-        db.session.add(registerUser)
-        db.session.commit()
+        if not user.query.filter_by(facebookId=session['facebookId']).first():
+            registerUser=user(session['facebookId'],session['uname'],session['lname'],time.strftime("%x %H:%M:%S"))  
+            db.session.add(registerUser)
+            db.session.commit()
     return redirect(next_url)
 
 
@@ -634,10 +634,6 @@ def admin_page():
 def db_rebuild():
     db.drop_all()
     db.create_all()
-
-    j = user('Jasper123','qwer','Jasper','Barcelona')
-    db.session.add(j)
-    db.session.commit()
     return os.environ['DATABASE_URL']
 
 if __name__ == '__main__':
