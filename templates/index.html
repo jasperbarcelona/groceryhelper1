@@ -178,9 +178,6 @@
 .title{
 	padding-left: 40px;
 }
-.author{
-	padding-left: 40px;
-}
 
 .rate{
 	text-align: center;
@@ -370,17 +367,15 @@ a:hover{
 				{% endif %}
 				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font>
 				<br>
-				<font size="2" color="#5A5A5A">{{r.recipe3Desc[:300]}}</font>
+				<font size="2" color="#5A5A5A"><strong>{{r.recipe3Desc[:2]}}</strong></font>
+				<br>
+				<font size="2" color="#f13242">By: {{r.recipe3Auth}}</font>
 			</td>
 			<td class="Rate" id="rate">
 				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}} </font>
 			</td>
 		</tr>
-		<tr>
-			<td class="author">
-				<font size="2" color="#f13242">By: {{r.recipe3Auth}}</font>
-			</td>
-		</tr>
+		
 </table>
 </div>
 <br>
