@@ -322,8 +322,7 @@ a:hover{
 		<a id="makeMine2">Make My Own Recipe</a>
 		{% endif %}
         </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
+       
         {% if signedin == True %} 	
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}}<span class="caret"></span></a>
@@ -333,15 +332,11 @@ a:hover{
             <li><a href="#">Something else here</a></li>
             <li class="divider"></li>
             <li><a href="/logout">Sign Out</a></li>
-
-          </ul>
-        </ul>
         </li>
-        {% else %}
-        <ul class="nav navbar-nav navbar-right">
-        <li ><a id="signIn">Sign In</a></li>                 
-        </ul>   
+        {% else %}     
+        <li ><a id="signIn">Sign In</a></li>                        
         {% endif %}
+        </ul>   
      
       
   </nav>
