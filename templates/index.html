@@ -352,6 +352,12 @@ a:hover{
 	<div id="spans">
 	<a id = "mostRecent" href="/">MostRecent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="mostUsed" onclick="posta()">MostUsed</span>	
 	</div>
+
+	<ul class="nav nav-tabs" role="tablist">
+  	<li class="active"><a href="/">Most Recent</a></li>
+  	<li><a id="mostUsed" onclick="posta()">Most Used</a></li>
+	</ul>
+
 	<div class="tablehead" style="width:92.6%;"></div>
 	
 
@@ -367,7 +373,7 @@ a:hover{
 				{% endif %}
 				<font size="3"><strong><span class="recipeItem" id={{r.id}} onclick=post(this.id)>{{r.recipe3Name}}</span></strong></font>
 				<br>
-				<font size="2" color="#5A5A5A"><strong>{{r.recipe3Desc[:2]}}</strong></font>
+				<font size="2" color="#5A5A5A"><strong>{{r.recipe3Desc[:300]}}</strong></font>
 				<br>
 				<font size="2" color="#f13242">By: {{r.recipe3Auth}}</font>
 			</td>
