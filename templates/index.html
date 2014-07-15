@@ -350,7 +350,7 @@ a:hover{
 	<div id="tabs">
 
 	<ul class="nav nav-tabs" role="tablist">
-  	<li class="active"><a href="tab1" data-toggle="tab" onclick="show()">Most Recent</a></li>
+  	<li class="active"><a href="tab1" data-toggle="tab" onclick="postm()" id="mostRecent">Most Recent</a></li>
   	<li><a href="tab2" id="mostUsed" onclick="posta()" data-toggle="tab">Most Used</a></li>
 	</ul>
 	<div class="tablehead" style="width:100%;"></div>
@@ -565,11 +565,6 @@ $('#contentCenter').html(data);
 
 
 <script type="text/javascript">
-function show() {
-    document.getElementById("myDiv").style.display="block";
-    setTimeout("postm()", 2000);  // 5 seconds
-}
-
 function postm(){
 $.post('/mostRecent',
 function(data){
@@ -586,6 +581,15 @@ $(document).ready(function(){
 $("#makeMine2").click(function(){   
     $("#overFlow").slideDown();
    $("#popUp").slideDown('slow');
+})
+
+});
+</script>
+
+<script>
+$(document).ready(function(){
+$("#mostRecent").click(function(){   
+    $("#myDiv").show();
 })
 
 });
