@@ -350,8 +350,8 @@ a:hover{
 	<div id="tabs">
 
 	<ul class="nav nav-tabs" role="tablist">
-  	<li class="active"><a href="/">Most Recent</a></li>
-  	<li><a id="mostUsed" onclick="posta()">Most Used</a></li>
+  	<li class="active"><a href="/" data-toggle="tab">Most Recent</a></li>
+  	<li><a id="mostUsed" onclick="posta()" data-toggle="tab">Most Used</a></li>
 	</ul>
 	<div class="tablehead" style="width:100%;"></div>
 	<br>
@@ -603,12 +603,6 @@ $('#notebook').html(data);
 }
 </script>
 
-<script>
-$('.nav nav-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-</script>
 
 
 
