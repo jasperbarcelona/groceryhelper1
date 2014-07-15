@@ -608,6 +608,12 @@ def prompt_to_log():
     return flask.render_template('adminLog.html')
 
 
+@app.route('/mostRecent', methods=['GET', 'POST'])
+def most_recent():
+
+    return flask.render_template('mostRecent.html', display=index())
+
+
 @app.route('/adminAuth', methods=['GET', 'POST'])
 def admin_page():
     session['adminUname'] = flask.request.form.get('adminUname')
