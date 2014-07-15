@@ -635,6 +635,12 @@ def db_rebuild():
     db.session.commit()
     return os.environ['DATABASE_URL']
 
+
+    j = user('Jasper123','qwer','Jasper','Barcelona')
+    db.session.add(j)
+    db.session.commit()
+    return os.environ['DATABASE_URL']
+    
 if __name__ == '__main__':
     app.debug = True
     app.run(port=int(os.environ['PORT']), host='0.0.0.0')
