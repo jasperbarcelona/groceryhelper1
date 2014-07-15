@@ -603,7 +603,12 @@ $('#notebook').html(data);
 }
 </script>
 
-
+<script>
+$('.nav nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
 
 
 
