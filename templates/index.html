@@ -29,6 +29,7 @@
 
 
 #searchBox{
+	margin-top: 10px;
 	width: 300px;
 	border-radius: 5px;
 	height:25px;
@@ -287,7 +288,23 @@ a{
 	}
 
 	.white{
-		background-color: #fff;
+	background-color: #fff;
+	}
+	.navbar-custom {
+    background-color:#9B58B5;
+    color:#ffffff;
+    border-radius:0;
+	}
+
+	.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+	}
+	.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+	}
+	.navbar-custom .navbar-brand {
+    color:#ffffff;
 	}
 
 
@@ -297,7 +314,7 @@ a{
 </head>
 
 <body>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-custom" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
