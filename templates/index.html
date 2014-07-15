@@ -160,12 +160,15 @@
 	margin-top: 20px;
 	height:335px;
 	width: 92.4%;
-	color: #333333;
+	
 }
 
 .tr{
-	height:50px;
-	color: #1e1e1e;
+	height:50px;	
+	color: #333333;
+}
+
+#content{
 	box-shadow: 10px 10px 5px #888888;
 }
 
@@ -353,6 +356,7 @@ a:hover{
 	<div id="maintabContainer">
 	
 {% for r in display %}
+<div id="content">
 <table id="mainTab">
 		<tr class="tr">
 			<td class="title" id="recipe">
@@ -368,7 +372,7 @@ a:hover{
 				<font size="2" color="#3c3c3c">Used by {{r.recipe3Use}} </font>
 			</td>
 		</tr>
-		
+		</div>
 </table>
 <br>
 {% endfor %}
